@@ -8,53 +8,56 @@ body {
 }
 nav {
     width: 100%;
-    padding: 1rem;
+    height: 2.5rem;
+    padding-left: 1rem;
     display: flex;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
     justify-content: space-between;
+    align-items: center;
+}
+.nav-links {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.nav-links a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: black;
 }
 header {
     margin: 1rem auto;
     width: max-content;
 }
-a {
-    text-decoration: none;
-    color: black;
-}
-.index-options {
+.kana-chart {
+    border-collapse: collapse;
     border: 1px solid black;
-    width: 50vw;
-    margin: 1rem auto;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    font-size: 1.3rem;
+    margin: 0 auto;
 }
-.option-container div {
-    display: flex;
-    margin: 1rem;
-    justify-content: center;
-}
-.option-container div a {
-    background-color: rgb(73, 201, 73);
-    color: white;
+.kana-chart td, th {
+    border: 1px solid black;
     padding: 1rem;
-    margin: 0 0.5rem;
+}
+.link-button-style {
     display: block;
-    box-shadow: 2px 5px 0 rgb(10, 110, 10);
     position: relative;
+    background-color: #444fff;
+    color: white;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0 5px 0 #000fff;
+    text-decoration: none;
 }
-.option-container div a:active {
+.link-button-style:hover {
+    background-color: #666fff;
+}
+.link-button-style:active {
     box-shadow: none;
     top: 5px;
     left: 2px;
 }
-.kana-chart {
-    border-collapse: collapse;
-    border: 1px solid black;
-    font-size: 2rem;
-}
-.kana-chart td, th {
-    border: 1px solid black;
+#page-links {
+    width: 30rem;
+    margin: 0 auto;
 }
