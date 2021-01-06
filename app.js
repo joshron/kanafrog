@@ -1,4 +1,4 @@
-const requestUrl = "https://raw.githubusercontent.com/joshron/kanafrog/master/kanas.json";
+const requestUrl = "https://raw.githubusercontent.com/joshron/kanafrog/main/kanas.json";
 const request = new XMLHttpRequest();
 let json;
 
