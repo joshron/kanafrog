@@ -7,7 +7,11 @@ document.addEventListener("click", e => {
         categoryButtonClicked(e.target);
         e.target.parentElement.style.display = "none";
     } else if (e.target.className === "flashcard") {
-        generateFlashcardElements(chosenCharArray[currentArrayNum]);
+        if (currentArrayNum>=0 && currentArrayNum<chosenCharArray.length) {
+            flashcardCont.innerHTML = "";
+            generateFlashcardElements(chosenCharArray[currentArrayNum]);
+            generateBackButton();
+        }
     } else {
         return;
     }
@@ -48,7 +52,6 @@ function generateArray(category) {
 }
 
 function generateFlashcardElements(someObject) {
-    flashcardCont.innerHTML = "";
     const romaji = someObject["romaji"];
     const kana = someObject["kana"];
     const div = document.createElement("div");
@@ -60,5 +63,10 @@ function generateFlashcardElements(someObject) {
     div.append(bot);
     div.className = "flashcard";
     flashcardCont.append(div);
-    currentArrayNum++;
+}
+
+function generateBackButton() {
+    const button = document.createElement("button");
+    button.innerText = "Previous card";
+    flashcardCont.append(button);
 }
