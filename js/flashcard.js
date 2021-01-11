@@ -8,6 +8,7 @@ document.addEventListener("click", e => {
         e.target.parentElement.style.display = "none";
     } else if (e.target.className === "flashcard") {
         if (currentArrayNum>=0 && currentArrayNum<chosenCharArray.length) {
+            currentArrayNum++;
             flashcardCont.innerHTML = "";
             generateFlashcardElements(chosenCharArray[currentArrayNum]);
             generateBackButton();
