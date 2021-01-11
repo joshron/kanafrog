@@ -3,31 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>frogkana - flashcards</title>
-    <link rel="stylesheet" href="css/style.css">
-    <base href="https://joshron.github.io/kanafrog/">
+    <title>frogkana - Learn Japanese kana</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <nav>
         <p class="logo">frogkana</p>
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="./index.html">Home</a>
             <a href="https://www.joshpalmer.dev">Portfolio</a>
             <a href="https://github.com/joshron">Github</a>
-            <a href="about.html">About</a>            
+            <a href="./about.html">About</a>
         </div>
     </nav>
+    <header>
+        <h1>Flashcards</h1>
+    </header>
     <main>
         <div id="flashcard-container">
             <div class="generic-container" id="flashcard-options">
-                <h1>Flashcard options</h1>
+                <h2>Options</h2>
                 <button class="option-button" id="hiragana-button">Hiragana only</button>
                 <button class="option-button" id="katakana-button">Katakana only</button>
                 <button class="option-button" id="all-button">Hiragana & Katakana</button>
             </div>
+            <div id="flashcard-board">
+                <button class="flashcard-button" id="hide-button-flashcard">Romaji on</button>
+                <button class="flashcard-button" id="shuffle-button-flashcard">Shuffle</button>
+                <button class="flashcard-button" id="next-button-flashcard">Next</button>
+                <button class="flashcard-button" id="previous-button-flashcard">Previous</button>
+                <div class="flashcard" id="flashcard-div">
+                    <p id="flashcard-kana">kana</p>
+                    <p id="flashcard-romaji">romaji</p>
+                </div>
+            </div>
         </div>
     </main>
-    <script src="js/json.js"></script>
-    <script src="js/flashcard.js"></script>
+    <script src="./js/json.js"></script>
+    <script src="./js/flashcard.js"></script>
 </body>
 </html>

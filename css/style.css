@@ -82,20 +82,16 @@ header {
     background-color: white;
     box-shadow: 5px 5px 5px black;
 }
-#flashcard-container, #test-container {
-    border: 1px solid black;
+#flashcard-container {
     width: 100%;
-    margin: 1rem auto;
-    padding: 3rem;
-    display: flex;
-    background-color: #DFDBE5;
+    background-color: #aaaaaa;
     background-size: 10rem;
 }
 .option-button {
     background-color: #444fff;
     border: none;
     box-shadow: 2px 5px 0 #000fff;
-    width: 30rem;
+    width: 100%;
     padding: 1rem;
     margin: 1rem;
     color: white;
@@ -120,11 +116,33 @@ header {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    margin: auto;
+    grid-area: card;
+    margin: 0 auto;
 }
 .flashcard:hover {
     cursor: pointer;
 }
 .flashcard p {
     font-size: 2rem;
+}
+#flashcard-board {
+    display: none;
+    grid-template-areas: "toggle shuffle" "card card" "previous next";
+}
+#hide-button-flashcard {
+    grid-area: toggle;
+}
+#shuffle-button-flashcard {
+    grid-area: shuffle;
+}
+#next-button-flashcard {
+    grid-area: next;
+}
+#previous-button-flashcard {
+    grid-area: previous;
+}
+.flashcard-button {
+    border: none;
+    padding: 0.5rem;
+    margin: 1rem 0.5rem;
 }
