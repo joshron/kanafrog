@@ -68,6 +68,8 @@ function generateFlashcardElements(someObject) {
 
 function generateBackButton() {
     const button = document.createElement("button");
+    button.className = "navigation-button";
     button.innerText = "Previous card";
     flashcardCont.append(button);
+    alert("button");
 }
