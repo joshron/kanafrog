@@ -2,10 +2,15 @@
 let categoryState = "unselected";
 const testOptions = document.getElementById("test-options");
 const testCont = document.getElementById("test-container");
+const questionCont = document.getElementById("question-container");
 document.addEventListener("click", e => {
     if (e.target.className === "option-button") {
         categoryButtonClicked(e.target);
-        e.target.parentElement.style.display = "none";
+        testOptions.style.display = "none";
+        questionCont.style.display = "grid";
+        answerChoices(chosenCharArray);
+        let answers = answerChoices(chosenCharArray);
+        populateQuestion(chosenCharArray[0]["kana"], answers);
     } else {
         return;
     }
@@ -68,8 +73,28 @@ function answerChoices(array) {
 }
 
 let currentNum = 0;
-function generateTestElements() {
-    const div = document.createElement("div");
-    const question = document.createElement("p");
-    
+
+const testQuestion = document.getElementById("test-question");
+const answer1 = document.getElementById("answer1");
+const answer2 = document.getElementById("answer2");
+const answer3 = document.getElementById("answer3");
+const answer4 = document.getElementById("answer4");
+function populateQuestion(question, answerArray) {
+    testQuestion.innerText = question;
+    answer1.innerText = answerArray[0];        
+    answer2.innerText = answerArray[1];        
+    answer3.innerText = answerArray[2];        
+    answer4.innerText = answerArray[3];        
 }
+
+let score = 0;
+questionCont.addEventListener("click", e => {
+    if (e.target.className === "answer-button") {
+        if (e.target.innerText === chosenCharArray[currentNum]["romaji"]) {
+            score++;
+        }
+        currentNum++;
+        let answers = answerChoices(chosenCharArray);
+        populateQuestion(chosenCharArray[currentNum]["kana"], answers);
+    }
+})

@@ -85,7 +85,6 @@ header {
 #flashcard-container {
     width: 100%;
     background-color: #aaaaaa;
-    background-size: 10rem;
 }
 .option-button {
     background-color: #444fff;
@@ -146,3 +145,30 @@ header {
     padding: 0.5rem;
     margin: 1rem 0.5rem;
 }
+#question-container {
+    width: 100%;
+    background-color: #aaaaaa;
+    display: none;
+    grid-template-areas: 
+    "question question" 
+    "answer1 answer2" 
+    "answer3 answer4";
+}
+#test-question {
+    grid-area: question;
+    font-size: 2rem;
+    margin: 2rem auto;
+}
+.answer-button {
+    padding: 1rem;
+    font-size: 1.5rem;
+    margin: 0.4rem;
+    border: none;
+    background-color: #444fff;
+    color: white;
+    font-weight: bold;
+}
+#answer1 {grid-area: answer1;}
+#answer2 {grid-area: answer2;}
+#answer3 {grid-area: answer3;}
+#answer4 {grid-area: answer4;}
