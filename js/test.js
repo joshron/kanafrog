@@ -87,13 +87,19 @@ function populateQuestion(question, answerArray) {
     answer4.innerText = answerArray[3];        
 }
 
+const scoreEle = document.getElementById("score-status");
+const answerEle = document.getElementById("answer-status");
 let score = 0;
 questionCont.addEventListener("click", e => {
     if (e.target.className === "answer-button") {
         if (e.target.innerText === chosenCharArray[currentNum]["romaji"]) {
+            answerEle.innerText = "Correct";
             score++;
+        } else {
+            answerEle.innerText = "Incorrect";
         }
         currentNum++;
+        scoreEle.innerText = `${score}/${currentNum}`;
         let answers = answerChoices(chosenCharArray);
         populateQuestion(chosenCharArray[currentNum]["kana"], answers);
     }

@@ -149,18 +149,21 @@ header {
     width: 100%;
     background-color: #aaaaaa;
     display: none;
-    grid-template-areas: 
+    grid-template-areas:
+    "status score" 
     "question question" 
     "answer1 answer2" 
     "answer3 answer4";
+    grid-template-columns: 50% 50%;
 }
 #test-question {
     grid-area: question;
-    font-size: 2rem;
+    font-size: 3rem;
     margin: 2rem auto;
+    font-weight: bold;
 }
 .answer-button {
-    padding: 1rem;
+    padding: 1rem 0;
     font-size: 1.5rem;
     margin: 0.4rem;
     border: none;
@@ -172,3 +175,11 @@ header {
 #answer2 {grid-area: answer2;}
 #answer3 {grid-area: answer3;}
 #answer4 {grid-area: answer4;}
+#score-status {
+    grid-area: score;
+    margin: 1rem 1rem 0 1rem
+}
+#answer-status {
+    grid-area: status;
+    margin: 1rem 1rem 0 1rem;
+}
