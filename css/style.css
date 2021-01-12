@@ -84,11 +84,8 @@ header {
 }
 #flashcard-container {
     width: 100%;
-    display: grid;
-    background-color: #DFDBE5;
-    grid-template-areas: 
-        "flashcard flashcard"
-        "navigation navigation"
+    background-color: #aaaaaa;
+    background-size: 10rem;
 }
 .option-button {
     background-color: #444fff;
@@ -119,8 +116,8 @@ header {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    margin: auto;
-    grid-area: flashcard;
+    grid-area: card;
+    margin: 0 auto;
 }
 .flashcard:hover {
     cursor: pointer;
@@ -128,6 +125,24 @@ header {
 .flashcard p {
     font-size: 2rem;
 }
-.navigation-button {
-    grid-area: navigation;
+#flashcard-board {
+    display: none;
+    grid-template-areas: "toggle shuffle" "card card" "previous next";
+}
+#hide-button-flashcard {
+    grid-area: toggle;
+}
+#shuffle-button-flashcard {
+    grid-area: shuffle;
+}
+#next-button-flashcard {
+    grid-area: next;
+}
+#previous-button-flashcard {
+    grid-area: previous;
+}
+.flashcard-button {
+    border: none;
+    padding: 0.5rem;
+    margin: 1rem 0.5rem;
 }
