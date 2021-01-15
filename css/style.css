@@ -183,3 +183,13 @@ header {
     grid-area: status;
     margin: 1rem 1rem 0 1rem;
 }
+#score-screen {
+    display: none;
+}
+
+@media only screen and (min-width: 570px) {
+    .generic-container {
+        width: 34rem;
+        margin: 1rem auto;
+    }
+}

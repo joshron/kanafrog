@@ -11,8 +11,12 @@ document.addEventListener("click", e => {
         answerChoices(chosenCharArray);
         let answers = answerChoices(chosenCharArray);
         populateQuestion(chosenCharArray[0]["kana"], answers);
-    } else {
-        return;
+    } else if (e.target === retryButton) {
+        chosenCharArray = [];
+        currentQuestionIndex = 0;
+        score = 0;
+        scoreScreenCont.style.display = "none";
+        testOptions.style.display = "flex";
     }
 });
 
@@ -59,10 +63,10 @@ function shuffleArray(array) {
 
 function answerChoices(array) {
     let answerArray = [];
-    const correctAnswer = array[currentNum]["romaji"];
+    const correctAnswer = array[currentQuestionIndex]["romaji"];
     while (answerArray.length < 3) {
         let rand = Math.floor(Math.random()*array.length);
-        if (rand !== currentNum) {
+        if (rand !== currentQuestionIndex) {
             let answer = array[rand]["romaji"];
             answerArray.push(answer);
         }
@@ -72,7 +76,7 @@ function answerChoices(array) {
     return answerArray;
 }
 
-let currentNum = 0;
+let currentQuestionIndex = 0;
 
 const testQuestion = document.getElementById("test-question");
 const answer1 = document.getElementById("answer1");
@@ -92,15 +96,38 @@ const answerEle = document.getElementById("answer-status");
 let score = 0;
 questionCont.addEventListener("click", e => {
     if (e.target.className === "answer-button") {
-        if (e.target.innerText === chosenCharArray[currentNum]["romaji"]) {
-            answerEle.innerText = "Correct";
-            score++;
-        } else {
-            answerEle.innerText = "Incorrect";
-        }
-        currentNum++;
-        scoreEle.innerText = `${score}/${currentNum}`;
-        let answers = answerChoices(chosenCharArray);
-        populateQuestion(chosenCharArray[currentNum]["kana"], answers);
+        checkAnswer(e.target.innerText);
+        checkQuestionCount();        
     }
 })
+
+function checkAnswer(answerString) {
+    if (answerString === chosenCharArray[currentQuestionIndex]["romaji"]) {
+        answerEle.innerText = "Correct";
+        score++;
+    } else {
+        answerEle.innerText = "Incorrect";
+    }
+    currentQuestionIndex++;
+    scoreEle.innerText = `${score}/${currentQuestionIndex}`;    
+}
+
+function checkQuestionCount() {
+    if (currentQuestionIndex>=chosenCharArray.length) {
+        revealScoreScreen();
+    } else {
+        let answers = answerChoices(chosenCharArray);
+        populateQuestion(chosenCharArray[currentQuestionIndex]["kana"], answers);
+    }
+}
+
+const scoreScreenCont = document.getElementById("score-screen");
+const scoreScreenScore = document.getElementById("score-screen-score");
+const retryButton = document.getElementById("retry-button");
+function revealScoreScreen() {
+    questionCont.style.display = "none";
+    scoreEle.innerHTML = "";
+    answerEle.innerHTML = "";
+    scoreScreenCont.style.display = "flex";
+    scoreScreenScore.innerText = `${score}/${currentQuestionIndex}`;    
+}
