@@ -1,22 +1,37 @@
 
+
+const TEST_OPTIONS = document.getElementById("test-options");
+const TEST_CONTAINER = document.getElementById("test-container");
+const QUESTION_CONTAINER = document.getElementById("question-container");
+const SCORE_SCREEN_CONTAINER = document.getElementById("score-screen");
+const SCORE_SCREEN_SCORE = document.getElementById("score-screen-score");
+const RETRY_BUTTON = document.getElementById("retry-button");
+const TEST_QUESTION = document.getElementById("test-question");
+const SCORE_ELEMENT = document.getElementById("score-status");
+const ANSWER_ELEMENT = document.getElementById("answer-status");
+const ANSWER_1 = document.getElementById("answer1");
+const ANSWER_2 = document.getElementById("answer2");
+const ANSWER_3 = document.getElementById("answer3");
+const ANSWER_4 = document.getElementById("answer4");
+
 let categoryState = "unselected";
-const testOptions = document.getElementById("test-options");
-const testCont = document.getElementById("test-container");
-const questionCont = document.getElementById("question-container");
+let chosenCharArray = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
 document.addEventListener("click", e => {
     if (e.target.className === "option-button") {
         categoryButtonClicked(e.target);
-        testOptions.style.display = "none";
-        questionCont.style.display = "grid";
-        answerChoices(chosenCharArray);
+        TEST_OPTIONS.style.display = "none";
+        QUESTION_CONTAINER.style.display = "grid";
         let answers = answerChoices(chosenCharArray);
         populateQuestion(chosenCharArray[0]["kana"], answers);
-    } else if (e.target === retryButton) {
+    } else if (e.target === RETRY_BUTTON) {
         chosenCharArray = [];
         currentQuestionIndex = 0;
         score = 0;
-        scoreScreenCont.style.display = "none";
-        testOptions.style.display = "flex";
+        SCORE_SCREEN_CONTAINER.style.display = "none";
+        TEST_OPTIONS.style.display = "flex";
     }
 });
 
@@ -30,17 +45,11 @@ function categoryButtonClicked(target) {
             generateArray("katakana");
             shuffleArray(chosenCharArray);
             break;
-        case "all-button":
-            generateArray("hiragana");
-            generateArray("katakana");
-            shuffleArray(chosenCharArray);
-            break;
         default:
             break;
     }
 }
 
-let chosenCharArray = [];
 function generateArray(category) {
     const keys = Object.keys(json[category]);
     for (i=0; i<keys.length; i++) {
@@ -52,8 +61,8 @@ function generateArray(category) {
 }
 
 function shuffleArray(array) {
-    for (i=array.length-1; i > 0; i--) {
-        let rand = Math.floor(Math.random() * i);
+    for (i=array.length-1; i >= 0; i--) {
+        let rand = Math.floor(Math.random() * (i + 1));
         let temp = array[i];
         array[i] = array[rand];
         array[rand] = temp;
@@ -76,25 +85,15 @@ function answerChoices(array) {
     return answerArray;
 }
 
-let currentQuestionIndex = 0;
-
-const testQuestion = document.getElementById("test-question");
-const answer1 = document.getElementById("answer1");
-const answer2 = document.getElementById("answer2");
-const answer3 = document.getElementById("answer3");
-const answer4 = document.getElementById("answer4");
 function populateQuestion(question, answerArray) {
-    testQuestion.innerText = question;
-    answer1.innerText = answerArray[0];        
-    answer2.innerText = answerArray[1];        
-    answer3.innerText = answerArray[2];        
-    answer4.innerText = answerArray[3];        
+    TEST_QUESTION.innerText = question;
+    ANSWER_1.innerText = answerArray[0];        
+    ANSWER_2.innerText = answerArray[1];        
+    ANSWER_3.innerText = answerArray[2];        
+    ANSWER_4.innerText = answerArray[3];        
 }
 
-const scoreEle = document.getElementById("score-status");
-const answerEle = document.getElementById("answer-status");
-let score = 0;
-questionCont.addEventListener("click", e => {
+QUESTION_CONTAINER.addEventListener("click", e => {
     if (e.target.className === "answer-button") {
         checkAnswer(e.target.innerText);
         checkQuestionCount();        
@@ -103,13 +102,13 @@ questionCont.addEventListener("click", e => {
 
 function checkAnswer(answerString) {
     if (answerString === chosenCharArray[currentQuestionIndex]["romaji"]) {
-        answerEle.innerText = "Correct";
+        ANSWER_ELEMENT.innerText = "Correct";
         score++;
     } else {
-        answerEle.innerText = "Incorrect";
+        ANSWER_ELEMENT.innerText = "Incorrect";
     }
     currentQuestionIndex++;
-    scoreEle.innerText = `${score}/${currentQuestionIndex}`;    
+    SCORE_ELEMENT.innerText = `${score}/${currentQuestionIndex}`;    
 }
 
 function checkQuestionCount() {
@@ -121,13 +120,10 @@ function checkQuestionCount() {
     }
 }
 
-const scoreScreenCont = document.getElementById("score-screen");
-const scoreScreenScore = document.getElementById("score-screen-score");
-const retryButton = document.getElementById("retry-button");
 function revealScoreScreen() {
-    questionCont.style.display = "none";
-    scoreEle.innerHTML = "";
-    answerEle.innerHTML = "";
-    scoreScreenCont.style.display = "flex";
-    scoreScreenScore.innerText = `${score}/${currentQuestionIndex}`;    
+    QUESTION_CONTAINER.style.display = "none";
+    SCORE_ELEMENT.innerHTML = "";
+    ANSWER_ELEMENT.innerHTML = "";
+    SCORE_SCREEN_CONTAINER.style.display = "flex";
+    SCORE_SCREEN_SCORE.innerText = `${score}/${currentQuestionIndex}`;    
 }

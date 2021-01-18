@@ -1,13 +1,26 @@
 
+
+const FLASHCARD_OPTIONS = document.getElementById("flashcard-options");
+const FLASHCARD_CONTAINER = document.getElementById("flashcard-container");
+const FLASHCARD_BOARD = document.getElementById("flashcard-board");
+const KANA_ELEMENT = document.getElementById("flashcard-kana");
+const ROMAJI_ELEMENT = document.getElementById("flashcard-romaji");
+const HIDE_BUTTON = document.getElementById("hide-button-flashcard");
+const SHUFFLE_BUTTON = document.getElementById("shuffle-button-flashcard");
+const NEXT_BUTTON = document.getElementById("next-button-flashcard");
+const PREVIOUS_BUTTON = document.getElementById("previous-button-flashcard");
+
 let categoryState = "unselected";
-const flashcardOptions = document.getElementById("flashcard-options");
-const flashcardCont = document.getElementById("flashcard-container");
-const flashcardBoard = document.getElementById("flashcard-board");
-flashcardCont.addEventListener("click", e => {
+let chosenCharArray = [];
+let arrayCount = 0;
+let isRomajiHidden = false;
+
+
+FLASHCARD_CONTAINER.addEventListener("click", e => {
     if (e.target.className === "option-button") {
         categoryButtonClicked(e.target);
-        flashcardOptions.style.display = "none";
-        flashcardBoard.style.display = "grid";
+        FLASHCARD_OPTIONS.style.display = "none";
+        FLASHCARD_BOARD.style.display = "grid";
     };
 });
 
@@ -31,8 +44,7 @@ function categoryButtonClicked(target) {
     }
 }
 
-let chosenCharArray = [];
-let arrayCount = 0;
+
 function generateArray(category) {
     let keys = Object.keys(json[category]);
     console.log(keys);
@@ -55,46 +67,42 @@ function shuffleArray(array) {
     return array;
 }
 
-const kanaElement = document.getElementById("flashcard-kana");
-const romajiElement = document.getElementById("flashcard-romaji");
+
 function changeFlashcard(someObject) {
-    kanaElement.innerText = someObject["kana"];
+    KANA_ELEMENT.innerText = someObject["kana"];
     if (isRomajiHidden === false) {
-        romajiElement.innerText = someObject["romaji"];
+        ROMAJI_ELEMENT.innerText = someObject["romaji"];
     } else {
-        romajiElement.innerText = "[ ]";
+        ROMAJI_ELEMENT.innerText = "[ ]";
     }
 }
 
-let isRomajiHidden = false;
+
 function hideRomaji(someObject) {
     if (isRomajiHidden === false) {
-        romajiElement.innerText = "[ ]";
+        ROMAJI_ELEMENT.innerText = "[ ]";
         isRomajiHidden = true;
     } else if (isRomajiHidden === true) {
-        romajiElement.innerText = someObject["romaji"];
+        ROMAJI_ELEMENT.innerText = someObject["romaji"];
         isRomajiHidden = false;
     } else {
         return;
     }
 }
 
-const hideBtn = document.getElementById("hide-button-flashcard");
-const shuffleBtn = document.getElementById("shuffle-button-flashcard");
-const nextBtn = document.getElementById("next-button-flashcard");
-const previousBtn = document.getElementById("previous-button-flashcard");
-flashcardBoard.addEventListener("click", e => {
-    if (e.target === nextBtn && arrayCount<chosenCharArray.length-1) {
+
+FLASHCARD_BOARD.addEventListener("click", e => {
+    if (e.target === NEXT_BUTTON && arrayCount<chosenCharArray.length-1) {
         arrayCount++;
         changeFlashcard(chosenCharArray[arrayCount]);
-    } else if (e.target === previousBtn && arrayCount>0) {
+    } else if (e.target === PREVIOUS_BUTTON && arrayCount>0) {
         arrayCount--;
         changeFlashcard(chosenCharArray[arrayCount]);
-    } else if (e.target === shuffleBtn) {
+    } else if (e.target === SHUFFLE_BUTTON) {
         arrayCount = 0;
         chosenCharArray = shuffleArray(chosenCharArray);
         changeFlashcard(chosenCharArray[0]);
-    } else if (e.target === hideBtn) {
+    } else if (e.target === HIDE_BUTTON) {
         hideRomaji(chosenCharArray[arrayCount]);
     }
 })
