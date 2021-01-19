@@ -91,7 +91,7 @@ footer {
 }
 .link-button-style img {
     width: 8rem;
-    background-color: #45885f;
+    background-color:rgb(238, 64, 180);
     border-radius: 50%;
     border: 4px solid #353839;
     margin-top: 1rem;
@@ -118,13 +118,13 @@ footer {
     font-size: 1.5rem;
 }
 .option-button:nth-child(1) {
-    background-color: rgb(180, 224, 180);
+    background-color: rgb(238, 181, 219);
 }
 .option-button:nth-child(2) {
-    background-color: rgb(158, 198, 224);
+    background-color:rgb(240, 123, 201);
 }
 .option-button:nth-child(3) {
-    background-color: rgb(116, 141, 116);
+    background-color: rgb(238, 64, 180);
 }
 .option-button:hover {
     background-color: rgb(250, 75, 75);
@@ -187,6 +187,7 @@ footer {
     "answer3 answer3 answer4 answer4";
     grid-template-columns: 25% 25% 25% 25%;
 }
+
 #restart-button-test {
     grid-area: restart;
     background-color: rgb(233, 129, 129);
@@ -291,7 +292,7 @@ footer {
         width: 34rem;
         margin: 1rem auto;
     }
-    #flashcard-board, #test-container {
+    #flashcard-board, #test-options, #test-container {
         width: 30rem;
         margin: 0 auto;
     }

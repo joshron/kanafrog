@@ -148,6 +148,9 @@ function checkQuestionCount() {
 }
 
 function revealScoreScreen() {
+    QUESTION_CONTAINER.style.display = "none";
+    SCORE_ELEMENT.innerHTML = "";
+    ANSWER_ELEMENT.innerHTML = "";
     SCORE_SCREEN_CONTAINER.style.display = "flex";
     SCORE_SCREEN_SCORE.innerText = `${score}/${currentQuestionIndex}`;    
 }
