@@ -1,5 +1,3 @@
-
-
 const FLASHCARD_OPTIONS = document.getElementById("flashcard-options");
 const FLASHCARD_CONTAINER = document.getElementById("flashcard-container");
 const FLASHCARD_BOARD = document.getElementById("flashcard-board");
@@ -10,11 +8,17 @@ const SHUFFLE_BUTTON = document.getElementById("shuffle-button-flashcard");
 const NEXT_BUTTON = document.getElementById("next-button-flashcard");
 const PREVIOUS_BUTTON = document.getElementById("previous-button-flashcard");
 
+const BASE_HIRAGANA = document.getElementById("base-hiragana-button");
+const MODIFIED_HIRAGANA = document.getElementById("modified-hiragana-button");
+const ALL_HIRAGANA = document.getElementById("all-hiragana-button");
+const BASE_KATAKANA = document.getElementById("base-katakana-button");
+const MODIFIED_KATAKANA = document.getElementById("modified-katakana-button");
+const ALL_KATAKANA = document.getElementById("all-katakana-button");
+
 let categoryState = "unselected";
 let chosenCharArray = [];
 let arrayCount = 0;
 let isRomajiHidden = false;
-
 
 FLASHCARD_CONTAINER.addEventListener("click", e => {
     if (e.target.className === "option-button") {
@@ -25,25 +29,31 @@ FLASHCARD_CONTAINER.addEventListener("click", e => {
 });
 
 function categoryButtonClicked(target) {
-    switch (target.id) {
-        case "hiragana-button":
-            generateArray("hiragana");
-            changeFlashcard(chosenCharArray[0]);
+    switch (target) {
+        case BASE_HIRAGANA:
+            generateArray("hiragana-base");
             break;
-        case "katakana-button":
-            generateArray("katakana");
-            changeFlashcard(chosenCharArray[0]);
+        case MODIFIED_HIRAGANA:
+            generateArray("hiragana-modified");
             break;
-        case "all-button":
-            generateArray("hiragana");
-            generateArray("katakana");
-            changeFlashcard(chosenCharArray[0]);
+        case ALL_HIRAGANA:
+            generateArray("hiragana-base");
+            generateArray("hiragana-modified");
+            break;
+        case BASE_KATAKANA:
+            generateArray("katakana-base");
+            break;
+        case MODIFIED_KATAKANA:
+            generateArray("katakana-modified");
+            break;
+        case ALL_KATAKANA:
+            generateArray("katakana-base");
+            generateArray("katakana-modified");
             break;
         default:
             break;
     }
 }
-
 
 function generateArray(category) {
     let keys = Object.keys(json[category]);
@@ -67,7 +77,6 @@ function shuffleArray(array) {
     return array;
 }
 
-
 function changeFlashcard(someObject) {
     KANA_ELEMENT.innerText = someObject["kana"];
     if (isRomajiHidden === false) {
@@ -76,7 +85,6 @@ function changeFlashcard(someObject) {
         ROMAJI_ELEMENT.innerText = "[ ]";
     }
 }
-
 
 function hideRomaji(someObject) {
     if (isRomajiHidden === false) {
@@ -89,7 +97,6 @@ function hideRomaji(someObject) {
         return;
     }
 }
-
 
 FLASHCARD_BOARD.addEventListener("click", e => {
     if (e.target === NEXT_BUTTON && arrayCount<chosenCharArray.length-1) {

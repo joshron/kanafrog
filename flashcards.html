@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>frogkana - Learn Japanese kana</title>
+    <title>kanafrog - Learn Japanese kana</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <nav>
-        <p class="logo">frogkana</p>
-        <div class="nav-links">
-            <a href="./index.html">Home</a>
-            <a href="https://www.joshpalmer.dev">Portfolio</a>
-            <a href="https://github.com/joshron">Github</a>
-            <a href="./about.html">About</a>
-        </div>
+        <img src="img/frog-svgrepo-com.svg" alt="The kanafrog logo" class="logo">
+        <a href="./index.html" class="nav-heading">kanafrog</a>
+        <a href="./about.html">About</a>
     </nav>
     <header>
         <h1>Flashcards</h1>
+        <p>Select a category to begin learning with interacitve flashcards</p>
     </header>
     <main>
         <div id="flashcard-container">
             <div class="generic-container" id="flashcard-options">
-                <h2>Options</h2>
-                <button class="option-button" id="hiragana-button">Hiragana only</button>
-                <button class="option-button" id="katakana-button">Katakana only</button>
-                <button class="option-button" id="all-button">Hiragana & Katakana</button>
+                <button class="option-button" id="base-hiragana-button">Base Hiragana か</button>
+                <button class="option-button" id="modified-hiragana-button">が　Modified Hiragana</button>
+                <button class="option-button" id="all-hiragana-button">All Hiragana　かが</button>
+                <button class="option-button" id="base-katakana-button">カ　Base Katakana</button>
+                <button class="option-button" id="modified-katakana-button">Modified Katakana　ガ</button>
+                <button class="option-button" id="all-katakana-button">カガ　All Katakana</button>
             </div>
             <div id="flashcard-board">
                 <button class="flashcard-button" id="hide-button-flashcard">Romaji on</button>
