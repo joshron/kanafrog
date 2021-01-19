@@ -12,16 +12,26 @@
         <a href="./index.html" class="nav-heading">kanafrog</a>
         <a href="./about.html">About</a>
     </nav>
+    <header>
+        <h1>Tests</h1>
+        <p>Select a category to begin a multi-choice test</p>
+    </header>
     <main>
         <div id="test-container">
             <div class="generic-container" id="test-options">
-                <h1>Test options</h1>
-                <button class="option-button" id="hiragana-button">Base Hiragana</button>
-                <button class="option-button">Modified Hiragana</button>
-                <button class="option-button">All Hiragana</button>
-                <button class="option-button" id="katakana-button">Katakana only</button>
-            </div>
+                <div class="hiragana-options">
+                    <button class="option-button" id="base-hiragana-button">Base Hiragana</button>
+                    <button class="option-button" id="modified-hiragana-button">Modified Hiragana</button>
+                    <button class="option-button" id="all-hiragana-button">All Hiragana</button>
+                </div>
+                <div class="katakana-options">
+                    <button class="option-button" id="base-katakana-button">Base Katakana</button>
+                    <button class="option-button" id="modified-katakana-button">Modified Katakana</button>
+                    <button class="option-button" id="all-katakana-button">All Katakana</button>
+                </div>                                
+            </div>  
             <div id="question-container">
+                <button class="flashcard-button" id="restart-button-test">Restart</button>
                 <p id="answer-status">Answer</p>
                 <p id="score-status">0/0</p>
                 <p id="test-question">kana</p>
@@ -33,10 +43,13 @@
             <div class="generic-container" id="score-screen">
                 <p>Nice job!</p>
                 <p id="score-screen-score"></p>
-                <button id="retry-button">Replay</button>
+                <button id="replay-button">Replay</button>
             </div>
         </div>
     </main>
+    <footer>
+        <a href="https://www.joshpalmer.dev">A site by Josh</a>
+    </footer>
     <script src="./js/json.js"></script>
     <script src="./js/test.js"></script>   
 </body>

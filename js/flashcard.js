@@ -3,7 +3,7 @@ const FLASHCARD_CONTAINER = document.getElementById("flashcard-container");
 const FLASHCARD_BOARD = document.getElementById("flashcard-board");
 const KANA_ELEMENT = document.getElementById("flashcard-kana");
 const ROMAJI_ELEMENT = document.getElementById("flashcard-romaji");
-const HIDE_BUTTON = document.getElementById("hide-button-flashcard");
+const RESTART_BUTTON = document.getElementById("restart-button-flashcard");
 const SHUFFLE_BUTTON = document.getElementById("shuffle-button-flashcard");
 const NEXT_BUTTON = document.getElementById("next-button-flashcard");
 const PREVIOUS_BUTTON = document.getElementById("previous-button-flashcard");
@@ -53,6 +53,7 @@ function categoryButtonClicked(target) {
         default:
             break;
     }
+    changeFlashcard(chosenCharArray[0]);
 }
 
 function generateArray(category) {
@@ -79,23 +80,7 @@ function shuffleArray(array) {
 
 function changeFlashcard(someObject) {
     KANA_ELEMENT.innerText = someObject["kana"];
-    if (isRomajiHidden === false) {
-        ROMAJI_ELEMENT.innerText = someObject["romaji"];
-    } else {
-        ROMAJI_ELEMENT.innerText = "[ ]";
-    }
-}
-
-function hideRomaji(someObject) {
-    if (isRomajiHidden === false) {
-        ROMAJI_ELEMENT.innerText = "[ ]";
-        isRomajiHidden = true;
-    } else if (isRomajiHidden === true) {
-        ROMAJI_ELEMENT.innerText = someObject["romaji"];
-        isRomajiHidden = false;
-    } else {
-        return;
-    }
+    ROMAJI_ELEMENT.innerText = "[👁]";
 }
 
 FLASHCARD_BOARD.addEventListener("click", e => {
@@ -109,7 +94,12 @@ FLASHCARD_BOARD.addEventListener("click", e => {
         arrayCount = 0;
         chosenCharArray = shuffleArray(chosenCharArray);
         changeFlashcard(chosenCharArray[0]);
-    } else if (e.target === HIDE_BUTTON) {
-        hideRomaji(chosenCharArray[arrayCount]);
+    } else if (e.target === RESTART_BUTTON) {
+        FLASHCARD_OPTIONS.style.display = "block";
+        FLASHCARD_BOARD.style.display = "none";
+        arrayCount = 0;
+        chosenCharArray = [];
+    } else if (e.target === ROMAJI_ELEMENT) {
+        ROMAJI_ELEMENT.innerText = chosenCharArray[arrayCount]["romaji"];
     }
-})
+});

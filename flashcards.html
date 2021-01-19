@@ -19,15 +19,19 @@
     <main>
         <div id="flashcard-container">
             <div class="generic-container" id="flashcard-options">
-                <button class="option-button" id="base-hiragana-button">Base Hiragana か</button>
-                <button class="option-button" id="modified-hiragana-button">が　Modified Hiragana</button>
-                <button class="option-button" id="all-hiragana-button">All Hiragana　かが</button>
-                <button class="option-button" id="base-katakana-button">カ　Base Katakana</button>
-                <button class="option-button" id="modified-katakana-button">Modified Katakana　ガ</button>
-                <button class="option-button" id="all-katakana-button">カガ　All Katakana</button>
+                <div class="hiragana-options">
+                    <button class="option-button" id="base-hiragana-button">Base Hiragana</button>
+                    <button class="option-button" id="modified-hiragana-button">Modified Hiragana</button>
+                    <button class="option-button" id="all-hiragana-button">All Hiragana</button>
+                </div>
+                <div class="katakana-options">
+                    <button class="option-button" id="base-katakana-button">Base Katakana</button>
+                    <button class="option-button" id="modified-katakana-button">Modified Katakana</button>
+                    <button class="option-button" id="all-katakana-button">All Katakana</button>
+                </div>                                
             </div>
             <div id="flashcard-board">
-                <button class="flashcard-button" id="hide-button-flashcard">Romaji on</button>
+                <button class="flashcard-button" id="restart-button-flashcard">Restart</button>
                 <button class="flashcard-button" id="shuffle-button-flashcard">Shuffle</button>
                 <button class="flashcard-button" id="next-button-flashcard">Next</button>
                 <button class="flashcard-button" id="previous-button-flashcard">Previous</button>
@@ -38,6 +42,9 @@
             </div>
         </div>
     </main>
+    <footer>
+        <a href="https://www.joshpalmer.dev">A site by Josh</a>
+    </footer>
     <script src="./js/json.js"></script>
     <script src="./js/flashcard.js"></script>
 </body>

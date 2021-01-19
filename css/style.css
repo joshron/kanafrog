@@ -7,10 +7,21 @@
     padding: 0;
     box-sizing: border-box;
 }
+html {
+    height: 100%;
+}
 body {
     font-family: 'Noto Sans JP', sans-seriff;
-    background-color: #429aff;
+    background-color: #5698e2;
     color: #353839;
+    background-image: url("/img/arches.png");
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: stretch;
+}
+main {
+    flex: 1 0 auto;
 }
 nav {
     width: 100%;
@@ -53,6 +64,8 @@ footer {
     justify-content: flex-end;
     align-items: center;
     padding-right: 1rem;
+    flex-shrink: 0;
+    margin-top: 2rem;
 }
 .link-button-style {
     display: flex;
@@ -83,38 +96,49 @@ footer {
     border: 4px solid #353839;
     margin-top: 1rem;
 }
+#flashcard-board, #test-container {
+    width: fit-content;
+    margin: 0 auto;
+}
 .generic-container {
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: fit-content;
 }
 .option-button {
-    background-color: #444fff;
+    background-color: white;
     border: none;
-    box-shadow: 2px 5px 0 #000fff;
     width: 100%;
     padding: 1rem;
-    margin: 1rem;
-    color: white;
+    color: #353839;
     position: relative;
+    font-size: 1.5rem;
+}
+.option-button:nth-child(1) {
+    background-color: rgb(180, 224, 180);
+}
+.option-button:nth-child(2) {
+    background-color: rgb(158, 198, 224);
+}
+.option-button:nth-child(3) {
+    background-color: rgb(116, 141, 116);
 }
 .option-button:hover {
+    background-color: rgb(250, 75, 75);
     cursor: pointer;
-    background-color: #666fff;
 }
-.option-button:active {
-    box-shadow: none;
-    top: 5px;
-    left: 2px;
+.hiragana-options, .katakana-options {
+    margin-bottom: 1rem;
 }
 .flashcard {
-    background-color: white;
+    background-color: rgb(231, 220, 220);
     border-radius: 5px;
     box-shadow: 5px 5px 5px black;
     height: 12rem;
-    width: 8rem;
+    width: 12rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -126,14 +150,15 @@ footer {
     cursor: pointer;
 }
 .flashcard p {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 #flashcard-board {
     display: none;
-    grid-template-areas: "toggle shuffle" "card card" "previous next";
+    grid-template-areas: "restart shuffle" "card card" "previous next";
+    background-color: white;
 }
-#hide-button-flashcard {
-    grid-area: toggle;
+#restart-button-flashcard {
+    grid-area: restart;
 }
 #shuffle-button-flashcard {
     grid-area: shuffle;
@@ -146,34 +171,48 @@ footer {
 }
 .flashcard-button {
     border: none;
-    padding: 0.5rem;
+    padding: 1rem 0.1rem;
+    font-size: 1.5rem;
     margin: 1rem 0.5rem;
+    background-color: rgb(233, 198, 101);
 }
 #question-container {
     width: 100%;
-    background-color: #aaaaaa;
+    background-color: white;
     display: none;
     grid-template-areas:
-    "status score" 
-    "question question" 
-    "answer1 answer2" 
-    "answer3 answer4";
-    grid-template-columns: 50% 50%;
+    "status score score restart" 
+    "question question question question" 
+    "answer1 answer1 answer2 answer2" 
+    "answer3 answer3 answer4 answer4";
+    grid-template-columns: 25% 25% 25% 25%;
+}
+#restart-button-test {
+    grid-area: restart;
+    background-color: rgb(233, 129, 129);
+    margin-right: 0.5rem;
 }
 #test-question {
     grid-area: question;
     font-size: 3rem;
     margin: 2rem auto;
     font-weight: bold;
+    background-color: white;
+    border: 1rem solid #5698e2;
+    border-radius: 50%;
+    padding: 1rem 2rem;
 }
 .answer-button {
     padding: 1rem 0;
     font-size: 1.5rem;
     margin: 0.4rem;
     border: none;
-    background-color: #444fff;
-    color: white;
+    background-color: rgb(233, 198, 101);
     font-weight: bold;
+}
+.answer-button:hover {
+    cursor: pointer;
+    background-color: rgb(201, 171, 89);
 }
 #answer1 {grid-area: answer1;}
 #answer2 {grid-area: answer2;}
@@ -181,17 +220,40 @@ footer {
 #answer4 {grid-area: answer4;}
 #score-status {
     grid-area: score;
-    margin: 1rem 1rem 0 1rem
+    margin: 1rem 1rem 0 1rem;
+    text-align: center;
+    font-size: 1.5rem;
 }
 #answer-status {
     grid-area: status;
     margin: 1rem 1rem 0 1rem;
+    font-size: 1.5rem;
 }
 #score-screen {
     display: none;
+    background-color: white;
+    margin: 0 auto;
+    width: max-content;
+    padding: 4rem;
+}
+#score-screen p {
+    font-size: 1.5rem;
+}
+#score-screen button {
+    padding: 1rem;
+    font-size: 1.5rem;
+    margin: 0.4rem;
+    border: none;
+    background-color: rgb(233, 198, 101);
+    font-weight: bold;
 }
 .about-frog {
     width: 50%;
+    background-color: white;
+    border-radius: 50%;
+    padding: 1rem;
+    margin: 0 auto;
+    display: block;
 }
 /* Chart page styling */
 .kana-chart {
@@ -214,6 +276,10 @@ footer {
     .generic-container {
         width: 34rem;
         margin: 1rem auto;
+    }
+    #flashcard-board, #test-container {
+        width: 30rem;
+        margin: 0 auto;
     }
 }
 @media only screen and (min-width: 840px) {
