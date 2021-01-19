@@ -181,7 +181,7 @@ footer {
     background-color: white;
     display: none;
     grid-template-areas:
-    "status score score restart" 
+    "status score restart restart" 
     "question question question question" 
     "answer1 answer1 answer2 answer2" 
     "answer3 answer3 answer4 answer4";
@@ -191,6 +191,10 @@ footer {
     grid-area: restart;
     background-color: rgb(233, 129, 129);
     margin-right: 0.5rem;
+    width: fit-content;
+    padding: 0.5rem;
+    display: block;
+    right: 0;
 }
 #test-question {
     grid-area: question;
